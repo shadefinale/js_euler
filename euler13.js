@@ -124,15 +124,6 @@ function euler13(){
     return answer;
 }
 
-// Returns the string as an integer, or 0 if not an integer, such as "".
-function parseInt_or_zero(str){
-    if (!str){
-        return 0;
-    } else {
-        return parseInt(str);
-    }
-}
-
 // Takes two strings that represent big numbers, and adds them together, returning a string representing the sum.
 function add_big_numbers(num1, num2){
 
@@ -162,8 +153,8 @@ function add_big_numbers(num1, num2){
         // The final digit is also saved in case this is the last pass of the loop.
         if (next_digit > 9){
             carry = 1;
-            final_digit = parseInt_or_zero(next_digit / 10);
-            next_digit = parseInt_or_zero(next_digit % 10);
+            final_digit = parseInt(next_digit / 10);
+            next_digit = parseInt(next_digit % 10);
         } else {
             carry = 0;
             final_digit = 0;
@@ -177,14 +168,13 @@ function add_big_numbers(num1, num2){
         tmp_num2 = tmp_num2.slice(0, -1);
     }
 
+    if (final_digit !== 0){
+        sum_str = sum_str + final_digit;
+    }
+
     // We need to now flip the string due to us adding our digits to the current sum_str via concantenation.
     sum_str = sum_str.split("").reverse().join("");
 
-    // If there is a carried over sum, we concantenate it to an empty string, and concantenate sum_str to that.
-    if (final_digit !== 0){
-        sum_str = "" + final_digit + sum_str;
-    }
-    
     return sum_str;
    
 }

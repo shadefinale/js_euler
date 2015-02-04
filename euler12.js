@@ -16,11 +16,28 @@ function euler12_triangle(){
 
 // A helper function to check the amount of divisors a number has.
 function count_divisors(num){
-    var div_count = 1;
-    for (var i = 1; i<num; i++){
-        if (num % i == 0){
-        div_count += 1;
+    if (num % 2 == 0){
+        num = num / 2;
+    }
+
+    var count = 0;
+    
+    while (num % 2 == 0){
+        count += 1;
+        num = num / 2;
+    }
+
+    var div_count = count + 1,
+        p = 3;
+
+    while (num != 1){
+        count = 0;
+        while(num % p == 0){
+            count += 1;
+            num = num / p;
         }
+        div_count = div_count * (count + 1);
+        p += 2;
     }
 
     return div_count;

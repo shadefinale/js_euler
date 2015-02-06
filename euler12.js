@@ -22,25 +22,20 @@ function count_divisors(num){
         currNum = num,
         currFactor = 2;
 
-    while (!check_prime(currNum)){
-        if (currNum % currFactor !== 0){
+    while (currNum > 1){
+        if (currNum % currFactor === 0){
             if (!factors[currFactor]){
                 factors[currFactor] = 1;
             } else {
                 factors[currFactor] += 1;
             }
+            currNum = currNum / currFactor;
         } else {
             currFactor += 1;
         }
     }
 
-    if (!factors[currNum]){
-        factors[currNum] = 1;
-    } else {
-        factors[currNum] += 1;
-    }
-
-    div_count = 1;
+    var div_count = 1;
     
     for (var key in factors){
         div_count *= factors[key] + 1;
